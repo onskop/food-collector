@@ -1,4 +1,3 @@
 secrets.toml
 .env
-ca-bundle.crt
 gcs_gymbro.json

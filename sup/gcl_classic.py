@@ -55,20 +55,31 @@ def upload_file(fs, bucket_name, file_name, local_path):
 
 
 # Path to the service account key
-svc_key = r'C:\Projects\Python\2_Experimental\Projekty\chatter\.streamlit\gcs_gymbro.json'
-file = 'food-bro/instruct.json'
-file2 = 'food-bro/convo_db.json'
+svc_key = r'C:\Projects\Python\2_Experimental\Projekty\4_nutrii\food-collector\.streamlit\gcs_gymbro.json'
+file = 'f_templ.json'
 
-data = {"Global": {
-        "instr1": "Jsi výživový poradce. Odpovídáš na otázky o výživě, stručně a výstižně. K doporučeným receptům přidáš i nákupní seznam a kalorické hodnoty jídel. Při sestavování jídelníčku vezmeš v potaz informace o zdravotním stavu klienta, jeho fyzické parametry jako hmotnost, výška, síla, množství tuku nebo intolerance a alergie.",
-        "instr2": "Parametry klienta: Hmotnost: 95kg, Výška: 195cm, Množství tuku: 18%, Intolerance: syrová rajčata, koriandr, kopr, mliko"
-    }}
 
 fs = gcsfs.GCSFileSystem(token=svc_key)
 
-#with fs.open(file, 'w', encoding = 'utf-8') as f:
-#    json.dump(data, f, ensure_ascii=False, indent=4)
-
-with fs.open(file, 'r', encoding = 'utf-8') as f:
-    file_content = f.read()
-print(file_content)
+content = {
+    "tname": "classic",
+    "meal_comps": {
+        "main": {
+            "name": None,
+            "size": None,
+        },
+        "side": {
+            "name": None,
+            "size": None,
+        },
+        "veggies": {
+            "name": None,
+            "size": None,
+        },
+        "other": {
+            "name": None,
+            "size": None,
+        }
+    }
+}
+create_file(fs, 'food-bro', file, json.dumps(content, indent=2))
