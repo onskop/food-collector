@@ -16,8 +16,8 @@ user = st.secrets["suggestic_user"]
 url = 'https://production.suggestic.com/graphql'
 
 headers = {
-  f"Authorization": "Token {key}",
-  f"sg-user": "{user}"
+  "Authorization": "Token {0}".format(key),
+  "sg-user": "{0}".format(user),
 }
 
 
