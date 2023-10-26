@@ -66,13 +66,14 @@ if st.button("Search"):
 
     # Load the response to a dictionary
     data = json.loads(response.text)
-    print(data)
-
-    recipes = data["data"]["recipeSearch"]["edges"]
-    for recipe in recipes:
-        name = recipe["node"]["name"]
-        calories = recipe["node"]["nutrientsPerServing"]["calories"]
-        protein = recipe["node"]["nutrientsPerServing"]["protein"]
-        fat = recipe["node"]["nutrientsPerServing"]["fat"]
-        carbs = recipe["node"]["nutrientsPerServing"]["carbs"]
-        st.write(f"Name: {name}, Calories: {calories}, Protein: {protein}, Fat: {fat}, Carbs: {carbs}")
+    if "errors" in data:
+        st.write(data["errors"][0]["message"])  
+    else:
+      recipes = data["data"]["recipeSearch"]["edges"]
+      for recipe in recipes:
+          name = recipe["node"]["name"]
+          calories = recipe["node"]["nutrientsPerServing"]["calories"]
+          protein = recipe["node"]["nutrientsPerServing"]["protein"]
+          fat = recipe["node"]["nutrientsPerServing"]["fat"]
+          carbs = recipe["node"]["nutrientsPerServing"]["carbs"]
+          st.write(f"Name: {name}, Calories: {calories}, Protein: {protein}, Fat: {fat}, Carbs: {carbs}")
