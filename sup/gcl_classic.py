@@ -11,6 +11,13 @@ def read_gcs(bucket_name, blob_name, key_path):
         
     return content
 
+def write_gcs(bucket_name, blob_name, key_path, data):
+    fs = gcsfs.GCSFileSystem(token=key_path)
+    # Use the file-like interface
+    with fs.open(f'{bucket_name}/{blob_name}', 'w', encoding = 'utf-8') as f:
+        f.write(json.dumps(data))
+    return True
+
 def initialize_gcs(token_path):
     return gcsfs.GCSFileSystem(token=token_path)
 
@@ -61,8 +68,8 @@ file = 'f_templ.json'
 
 fs = gcsfs.GCSFileSystem(token=svc_key)
 
-content = {
-    "tname": "classic",
+content = {"templates": [{
+    "name": "classic",
     "meal_comps": {
         "main": {
             "name": None,
@@ -81,5 +88,24 @@ content = {
             "size": None,
         }
     }
+},
+{
+    "name": "bowl",
+    "meal_comps": {
+        "protein": {
+            "name": None,
+            "size": None,
+        },
+        "dressing": {
+            "name": None,
+            "size": None,
+        },
+        "other": {
+            "name": None,
+            "size": None,
+        }
+    }
 }
-create_file(fs, 'food-bro', file, json.dumps(content, indent=2))
+]
+}
+write_gcs('food-bro',file,svc_key,content)

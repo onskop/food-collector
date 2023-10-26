@@ -1,7 +1,6 @@
 streamlit
-openai
-llama-index
-nltk
-tiktoken
+requests
+json
+os
 gcsfs
-git+https://github.com/streamlit/files-connection
+time
