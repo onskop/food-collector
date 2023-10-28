@@ -1,9 +1,11 @@
 import streamlit as st
 import gcsfs
+from gcsfs import FilesConnection
 import json
 
 def get_gcs(key,blob_path):
-    fs = gcsfs.GCSFileSystem(token=key)
+    #fs = gcsfs.GCSFileSystem(token=key)
+    fs = st.experimental_connection('gcs', type=FilesConnection)
     
     # Use the file-like interface
     with fs.open(f'{blob_path}', 'r', encoding = 'utf-8') as f:
@@ -11,7 +13,8 @@ def get_gcs(key,blob_path):
     return json.loads(content)
 
 def write_gcs(key, blob_path, data):
-    fs = gcsfs.GCSFileSystem(token=key)
+    #fs = gcsfs.GCSFileSystem(token=key)
+    fs = st.experimental_connection('gcs', type=FilesConnection)
     # Use the file-like interface
     with fs.open(f'{blob_path}', 'w', encoding = 'utf-8') as f:
         f.write(json.dumps(data))
