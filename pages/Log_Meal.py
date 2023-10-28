@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import gcsfs
-from gcsfs import FilesConnection
+from st_files_connection import FilesConnection
 import time
 
 def get_gcs(key,blob_path):
