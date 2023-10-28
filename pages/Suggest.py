@@ -70,6 +70,7 @@ if st.button("Search"):
         st.write(data["errors"][0]["message"])  
     else:
       recipes = data["data"]["recipeSearch"]["edges"]
+      st.write(f"Found {len(recipes)} recipes.")
       for recipe in recipes:
           name = recipe["node"]["name"]
           calories = recipe["node"]["nutrientsPerServing"]["calories"]
