@@ -63,49 +63,11 @@ def upload_file(fs, bucket_name, file_name, local_path):
 
 # Path to the service account key
 svc_key = r'C:\Projects\Python\2_Experimental\Projekty\4_nutrii\food-collector\.streamlit\gcs_gymbro.json'
-file = 'f_templ.json'
+file = 'img_data.json'
 
 
 fs = gcsfs.GCSFileSystem(token=svc_key)
 
-content = {"templates": [{
-    "name": "classic",
-    "meal_comps": {
-        "main": {
-            "name": None,
-            "size": None,
-        },
-        "side": {
-            "name": None,
-            "size": None,
-        },
-        "veggies": {
-            "name": None,
-            "size": None,
-        },
-        "other": {
-            "name": None,
-            "size": None,
-        }
-    }
-},
-{
-    "name": "bowl",
-    "meal_comps": {
-        "protein": {
-            "name": None,
-            "size": None,
-        },
-        "dressing": {
-            "name": None,
-            "size": None,
-        },
-        "other": {
-            "name": None,
-            "size": None,
-        }
-    }
-}
-]
-}
-write_gcs('food-bro',file,svc_key,content)
+content = {'test':'test'}
+write_gcs('food-bro',file,svc_key,json.dumps(content))
+print(read_gcs('food-bro',file,svc_key))
