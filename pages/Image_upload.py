@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 api_key = st.secrets["openai_key"]
-conn = st.experimental_connection('gcs', type=FilesConnection)
+conn = st.connection('gcs', type=FilesConnection)
 
 def get_imgname():
     # Generate a unique filename using the current datetime

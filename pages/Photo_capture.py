@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 api_key = st.secrets["openai_key"]
-conn = st.experimental_connection('gcs', type=FilesConnection)
+conn = st.connection('gcs', type=FilesConnection)
 
 def get_imgname():
     # Generate a unique filename using the current datetime
@@ -78,7 +78,7 @@ if st.button("Ask"):
         imgname = get_imgname()
         path = 'food-bro/img-captures/' + imgname
         save_img(image, path)
-        add_metadata('food-bro/img-data.json', response, imgname)
+        add_metadata('food-bro/img_data.json', response, imgname)
     else:
         st.write("Please take a picture")
 
