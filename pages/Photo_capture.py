@@ -49,12 +49,12 @@ def answer_pic(image, prompt):
 
 image = st.camera_input("Take a picture")
 
-prompt = st.text_input("What's your question?", value = "What’s in this image?")
+prompt = st.text_input("What's your question?", value = "What’s in this image? Segregate all provided infromation and answer in json format.")
 
 if st.button("Ask"):
     if image:
         st.image(image)
-        response = answer_pic(image, prompt)
+        response = answer_pic(image, prompt)['choices'][0]['message']['content']
         st.write(response)
     else:
         st.write("Please take a picture")

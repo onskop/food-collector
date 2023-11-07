@@ -48,7 +48,7 @@ def answer_pic(image, prompt):
 
 
 image = st.file_uploader("Upload file", type = ["png", "jpg", "jpeg"])
-prompt = st.text_input("What's your question?", value = "What’s in this image?")
+prompt = st.text_input("What's your question?", value = "What’s in this image? Segregate all provided infromation and answer in json format.")
 
 if st.button("Ask"):
     if image:
