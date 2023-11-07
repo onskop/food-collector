@@ -79,6 +79,7 @@ if st.button("Ask"):
         path = 'food-bro/img-captures/' + imgname
         save_img(image, path)
         add_metadata('food-bro/img_data.json', response, imgname)
+        st.write("Image saved: ", path)
     else:
         st.write("Please take a picture")
 
