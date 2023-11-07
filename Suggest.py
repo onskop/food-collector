@@ -1,5 +1,6 @@
 import os
 import requests, json, streamlit as st
+import time
 
 
 # extract value from .streamlit/secrets.toml in line that contains suggestic_key
@@ -63,14 +64,16 @@ if st.button("Search"):
     # Execute the request
     print('-------------------------------------------------------------------------------------------')
     response = requests.post(url, headers=headers, json={'query': query, 'variables': variables})
-
+    print(response.text)
     # Load the response to a dictionary
     data = json.loads(response.text)
     if "errors" in data:
         st.write(data["errors"][0]["message"])  
     else:
       recipes = data["data"]["recipeSearch"]["edges"]
-      st.write(f"Found {len(recipes)} recipes.")
+      #get current datetime
+      datetime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+      st.write(str(datetime) + f": Found {len(recipes)} recipes.")
       for recipe in recipes:
           name = recipe["node"]["name"]
           calories = recipe["node"]["nutrientsPerServing"]["calories"]
