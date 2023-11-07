@@ -49,7 +49,7 @@ def answer_pic(image, prompt):
 
 image = st.camera_input("Take a picture")
 
-prompt = st.text_input("What's your question?", value = "What’s in this image? Segregate all provided infromation and answer in json format.")
+prompt = st.text_input("What's your question?", value = "What’s in this image? If it's meal, add estimation of meal nutrition values and calories. Don't provide ranges, just take the best guess. Segregate all provided infromation and answer in json format.")
 
 if st.button("Ask"):
     if image:
