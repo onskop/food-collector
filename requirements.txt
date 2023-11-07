@@ -1,5 +1,6 @@
 streamlit
 requests
+openai
 gcsfs
 git+https://github.com/streamlit/files-connection
 
