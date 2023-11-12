@@ -20,7 +20,7 @@ def load_log(path):
 
 
 
-if st.button('Refresh'):
+if st.button('Load'):
     data = load_log(textpath)
     datalist = data.split('PIC: ')
     for i in range(1,len(datalist)):

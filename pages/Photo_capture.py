@@ -69,7 +69,7 @@ def answer_pic(image, prompt):
 image = st.camera_input("Take a picture")
 pro = "What's in this image? Answer in json only. If it's meal, list it's components in structure main_dish, side_dish, garnish, topping, other. There can be multiple subitems for each component, if it fits the category. If no item of component type is present, leave it blank. Estimate nutritional values (calories, fat, protein, carbs) for each component. Provide one number as your best guess. Keep it simple and short. No explanations."
 
-prompt = st.text_input("What's your question?", value = pro)
+prompt = st.text_area("What's your question?", value = pro)
 
 if st.button("Ask"):
     if image:
